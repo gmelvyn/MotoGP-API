@@ -1,6 +1,6 @@
 {
   "name": "motogp-api",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "author": "Vasolix",
   "license": "MIT",
   "description": "A TypeScript API wrapper for MotoGP data",
@@ -18,20 +18,17 @@
     "types": "tsc --emitDeclarationOnly --project tsconfig.build.json",
     "build": "bun build ./src/index.ts --outdir dist --target=node && bun run types",
     "prepublishOnly": "bun run build",
-    "test": "bun test",
-    "lint": "bun run eslint . --ext .ts"
+    "test": "bun test"
   },
   "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
+    "@types/bun": "^1.3.12",
+    "typescript": "^6.0.2"
   },
   "files": [
     "dist"
   ],
   "dependencies": {
-    "undici": "^7.11.0"
+    "undici": "^8.1.0"
   },
   "keywords": [
     "motogp",

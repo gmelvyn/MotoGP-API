@@ -167,11 +167,16 @@ export function parseTimeToMs(timeString: string): number {
   const parts = cleanTime.split(':');
   
   if (parts.length !== 2) return 0;
-  
-  const minutes = parseInt(parts[0], 10);
-  const secondsParts = parts[1].split('.');
-  const seconds = parseInt(secondsParts[0], 10);
-  const milliseconds = secondsParts[1] ? parseInt(secondsParts[1].padEnd(3, '0'), 10) : 0;
+
+  const [minutesPart, secondsPart] = parts;
+  if (minutesPart === undefined || secondsPart === undefined) return 0;
+
+  const [secondsValue, millisecondsValue] = secondsPart.split('.');
+  if (secondsValue === undefined) return 0;
+
+  const minutes = parseInt(minutesPart, 10);
+  const seconds = parseInt(secondsValue, 10);
+  const milliseconds = millisecondsValue ? parseInt(millisecondsValue.padEnd(3, '0'), 10) : 0;
   
   // Check if any parsing failed (NaN)
   if (isNaN(minutes) || isNaN(seconds) || isNaN(milliseconds)) {
